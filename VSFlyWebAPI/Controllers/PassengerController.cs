@@ -33,7 +33,7 @@ namespace VSFlyWebAPI.Controllers
             _context.PassengerSet.Add(passenger.ConvertToPassengerEF());
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPassenger", new { id = passenger.PassengerID }, passenger);
+            return passenger;
         }
 
 

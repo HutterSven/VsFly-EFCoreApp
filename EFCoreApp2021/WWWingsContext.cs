@@ -24,8 +24,7 @@ namespace EFCoreApp2021
         }
 
         protected override void OnModelCreating(ModelBuilder builder) {
-            // composed key
-            builder.Entity<Booking>().HasKey(x => new { x.FlightNo, x.PassengerID });
+            
 
             // Entity Core 5.0, no more manual mapping !
             // mapping many to many relationship

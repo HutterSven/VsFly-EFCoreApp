@@ -95,10 +95,11 @@ namespace VSFlyWebAPI.Controllers
             _context.BookingSet.Add(booking.ConvertToBookingEF());
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBooking", new { id = booking.FlightNo }, booking);
+            return null;
         }
 
-    
+
+
 
 
     }
