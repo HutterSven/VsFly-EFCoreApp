@@ -196,7 +196,7 @@ namespace EFCoreApp2021
                      select passenger;
 
             foreach (Passenger passenger in q6) {
-                Console.WriteLine("{0} {1} {2}", passenger.PersonID, passenger.Lastname, passenger.BookingSet.Count);
+                Console.WriteLine("{0} {1} {2}", passenger.PassengerID, passenger.Lastname, passenger.BookingSet.Count);
 
                 foreach (Booking book in passenger.BookingSet)
                     Console.WriteLine("- {0} {1} {2}", book.Flight.Date, book.Flight.Departure, book.Flight.Pilot.Firstname);
