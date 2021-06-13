@@ -26,20 +26,6 @@ namespace EFCoreApp2021
         protected override void OnModelCreating(ModelBuilder builder) {
             
 
-            // Entity Core 5.0, no more manual mapping !
-            // mapping many to many relationship
-            builder.Entity<Booking>()
-                .HasOne(x => x.Flight)
-                .WithMany(x => x.BookingSet)
-                .HasForeignKey(x => x.FlightNo)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<Booking>()
-                .HasOne(x => x.Passenger)
-                .WithMany(x => x.BookingSet)
-                .HasForeignKey(x => x.PassengerID)
-                .OnDelete(DeleteBehavior.Restrict);
-
         }
 
 

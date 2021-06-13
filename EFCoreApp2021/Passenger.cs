@@ -14,6 +14,5 @@ namespace EFCoreApp2021
 
         public string Lastname { get; set; }
 
-        public virtual ICollection<Booking> BookingSet { get; set; }
     }
 }

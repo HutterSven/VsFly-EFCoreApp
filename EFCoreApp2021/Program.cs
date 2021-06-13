@@ -167,40 +167,7 @@ namespace EFCoreApp2021
 
             ctx.SaveChanges();
 
-            Booking book1 = new Booking { Flight = ctx.FlightSet.Find(1), Passenger = passenger1 };
-
-            Booking book2 = new Booking { Flight = ctx.FlightSet.Find(4), Passenger = passenger1 };
-
-            Booking book3 = new Booking { FlightNo = 1, Passenger = passenger2 };
-
-            Booking book4 = new Booking { FlightNo = 4, Passenger = passenger2 };
-
-            ctx.BookingSet.Add(book1);
-
-            ctx.BookingSet.Add(book2);
-
-            ctx.BookingSet.Add(book3);
-
-            ctx.BookingSet.Add(book4);
-
-            ctx.SaveChanges();
-
-            Console.WriteLine("asdf");
-
-
-
-            // add Booking(s), to book flights
-
-            // select booked flights, passengers and their booking, flights and their passengers
-            var q6 = from passenger in ctx.PassengerSet
-                     select passenger;
-
-            foreach (Passenger passenger in q6) {
-                Console.WriteLine("{0} {1} {2}", passenger.PassengerID, passenger.Lastname, passenger.BookingSet.Count);
-
-                foreach (Booking book in passenger.BookingSet)
-                    Console.WriteLine("- {0} {1} {2}", book.Flight.Date, book.Flight.Departure, book.Flight.Pilot.Firstname);
-            }
+            
 
 
             Console.ReadKey();

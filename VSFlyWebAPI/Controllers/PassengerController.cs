@@ -30,8 +30,11 @@ namespace VSFlyWebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<PassengerM>> PostPassenger(PassengerM passenger)
         {
-            _context.PassengerSet.Add(passenger.ConvertToPassengerEF());
+            EFCoreApp2021.Passenger passengerTemp = passenger.ConvertToPassengerEF();
+            _context.PassengerSet.Add(passengerTemp);
             await _context.SaveChangesAsync();
+
+            passenger.PassengerID = passengerTemp.PassengerID;
 
             return passenger;
         }
