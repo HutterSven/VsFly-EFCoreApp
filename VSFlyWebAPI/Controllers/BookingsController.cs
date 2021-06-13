@@ -47,6 +47,7 @@ namespace VSFlyWebAPI.Controllers
             var bookingList = await _context.BookingSet.ToListAsync();
             var flightList = await _context.FlightSet.ToListAsync();
             double avgPrice = 0;
+            int bookingsCount = 0;
             foreach (Booking b in bookingList)
             {
                 foreach (Flight f in flightList)
@@ -54,11 +55,12 @@ namespace VSFlyWebAPI.Controllers
                     if (b.FlightNo == f.FlightNo && f.Destination == dest)
                     {
                         avgPrice += b.Price;
-                        avgPrice /= 2;
+                        bookingsCount++;
                     }
                 }
                 
             }
+            avgPrice /= bookingsCount;
             return avgPrice;
         }
 
@@ -78,8 +80,11 @@ namespace VSFlyWebAPI.Controllers
                     {
                         foreach (Passenger p in passengerList)
                         {
-                            var bDM = b.ConvertToDestM(f, p);
-                            listByDestM.Add(bDM);
+                            if (b.PassengerID == p.PassengerID)
+                            {
+                                var bDM = b.ConvertToDestM(f, p);
+                                listByDestM.Add(bDM);
+                            }
                         }
                     }
                 }
