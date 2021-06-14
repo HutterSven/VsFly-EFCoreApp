@@ -74,6 +74,21 @@ namespace EFCoreApp2021
 
             ctx.FlightSet.Add(n);
 
+            Flight m;
+
+            for (int i = 0; i <= 10; i++)
+            {
+                m = new Flight();
+                m.BasePrice = 100 * (i + 1);
+                m.Date = DateTime.Now;
+                m.Departure = "ZRH";
+                m.Destination = "BER";
+                m.PilotId = 1;
+                m.Seats = 100;
+                ctx.FlightSet.Add(m);
+                ctx.SaveChanges();
+            }
+
             ctx.SaveChanges();
 
             Console.WriteLine("======================");
@@ -110,17 +125,6 @@ namespace EFCoreApp2021
                 updatable.Seats += 1;
 
                 ctx.SaveChanges();
-            }
-
-            // select and display all flights with the pilot Givenname + Salary
-            var q3 = from f in ctx.FlightSet
-                     select f;
-
-            foreach (Flight flight in q3) {
-                // explicitly load the Pilot !
-                //ctx.Entry(flight).Reference(x => x.Pilot).Load();
-
-                Console.WriteLine("{0} {1} {2} {3}", flight.Date, flight.Departure, flight.Pilot.Firstname, flight.Pilot.Salary);
             }
 
             Console.WriteLine("======================");
@@ -167,7 +171,28 @@ namespace EFCoreApp2021
 
             ctx.SaveChanges();
 
-            
+            Passenger passenger;
+
+            for (int i = 0; i <= 10; i++)
+            {
+                passenger = new Passenger();
+                passenger.Firstname = "Hans";
+                passenger.Lastname = "Luc";
+                ctx.PassengerSet.Add(passenger);
+                ctx.SaveChanges();
+            }
+
+            Booking booking;
+
+            for (int i = 0; i <= 10; i++)
+            {
+                booking = new Booking();
+                booking.FlightNo = i+1;
+                booking.PassengerID = i+1;
+                booking.Price = 100;
+                ctx.BookingSet.Add(booking);
+                ctx.SaveChanges();
+            }
 
 
             Console.ReadKey();
