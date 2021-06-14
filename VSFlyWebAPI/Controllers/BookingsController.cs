@@ -104,7 +104,7 @@ namespace VSFlyWebAPI.Controllers
             _context.BookingSet.Add(booking.ConvertToBookingEF());
             await _context.SaveChangesAsync();
 
-            return null;
+            return booking;
         }
 
 
