@@ -60,6 +60,10 @@ namespace VSFlyWebAPI.Controllers
                 }
                 
             }
+            if(bookingsCount == 0)
+            {
+                return 0;
+            }
             avgPrice /= bookingsCount;
             return avgPrice;
         }
