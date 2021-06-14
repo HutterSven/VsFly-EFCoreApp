@@ -42,7 +42,7 @@ namespace VSFlyWebAPI.extensions
         {
             Models.BookingM bM = new Models.BookingM();
             bM.FlightNo = b.FlightNo;
-            bM.PassengerID = 1;
+            bM.PassengerID = b.PassengerID;
             bM.Price = b.Price;
             return bM;
         }
