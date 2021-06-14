@@ -166,25 +166,31 @@ namespace VSFlyWebAPI.Controllers
             {
                 if (b.FlightNo == flight.FlightNo) count++;
             }
-            if (count != 0 && count / flight.Seats > .8)
+            if (count / flight.Seats > .8)
             {
                 foreach (Booking b in bookings)
                 { 
                     return flight.BasePrice * 1.5;
                 }
             }
-            if (count != 0 && count / flight.Seats < .2 && (flight.Date.Year == DateTime.Today.Year && flight.Date.Month - DateTime.Today.Month < 2))
+            if(flight.Date.Year == DateTime.Today.Year && flight.Date.Month - DateTime.Today.Month < 2)
             {
-                foreach (Booking b in bookings)
+                if(flight.Date.Year == DateTime.Today.Year && flight.Date.Month - DateTime.Today.Month < 1)
                 {
-                    return flight.BasePrice * .8;
+                    if (count / flight.Seats < .5)
+                    {
+                        foreach (Booking b in bookings)
+                        {
+                            return flight.BasePrice * .7;
+                        }
+                    }
                 }
-            }
-            if (count != 0 &&  count / flight.Seats < .5 && (flight.Date.Year == DateTime.Today.Year && flight.Date.Month - DateTime.Today.Month < 1))
-            {
-                foreach (Booking b in bookings)
+                if (count / flight.Seats < .2)
                 {
-                    return flight.BasePrice * .7;
+                    foreach (Booking b in bookings)
+                    {
+                        return flight.BasePrice * .8;
+                    }
                 }
             }
             return flight.BasePrice;
